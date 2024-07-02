@@ -1,0 +1,25 @@
+permissions:
+  external:
+    images:
+      - 'https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_square.jpg'
+  scopes:
+    - read:page:confluence
+    - read:confluence-content.summary
+modules:
+  macro:
+    - key: pet-app-2-hello-world-macro
+      resource: main
+      render: native
+      resolver:
+        function: resolver
+      title: Pet App 2
+  function:
+    - key: resolver
+      handler: index.handler
+resources:
+  - key: main
+    path: src/frontend/index.jsx
+app:
+  runtime:
+    name: nodejs18.x
+  id: ari:cloud:ecosystem::app/9c516202-2982-480c-a877-663364d3e0b0
