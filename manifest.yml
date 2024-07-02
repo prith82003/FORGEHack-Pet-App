@@ -5,6 +5,8 @@ permissions:
   scopes:
     - read:page:confluence
     - read:confluence-content.summary
+    - read:confluence-content.all
+
 modules:
   macro:
     - key: pet-app-2-hello-world-macro
@@ -13,12 +15,21 @@ modules:
       resolver:
         function: resolver
       title: Pet App 2
+  trigger:
+    - key: attachment-created-event
+      function: onAttachmentCreated
+      events: 
+        - avi:confluence:created:attachment
   function:
     - key: resolver
       handler: index.handler
+    - key: onAttachmentCreated
+      handler: index.handleMacroLoad
+
 resources:
   - key: main
     path: src/frontend/index.jsx
+
 app:
   runtime:
     name: nodejs18.x
